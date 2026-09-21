@@ -18,23 +18,31 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Configurar Java JDK 17
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Configurar Gradle
-        uses: gradle/actions/setup-gradle@v3
-        with:
-          gradle-version: '8.7'
-          cache-disabled: true
+      - name: Verificar o Instalar Gradle
+        run: |
+          if command -v gradle &> /dev/null; then
+            echo "Gradle ya instalado en la máquina virtual:"
+            gradle --version
+          else
+            echo "Instalando Gradle 8.7..."
+            curl -sSL --retry 5 https://services.gradle.org/distributions/gradle-8.7-bin.zip -o gradle-8.7-bin.zip
+            sudo mkdir -p /opt/gradle
+            sudo unzip -q -d /opt/gradle gradle-8.7-bin.zip
+            sudo ln -sf /opt/gradle/gradle-8.7/bin/gradle /usr/local/bin/gradle
+            gradle --version
+          fi
 
       - name: Aceptar Licencias de Android SDK
         run: |
           yes | sdkmanager --licenses || true
 
       - name: Compilar APK con Gradle
-        run: gradle assembleDebug --stacktrace --info
+        run: gradle assembleDebug --stacktrace
 
       - name: Renombrar APK
         run: |
@@ -51,8 +59,8 @@ jobs:
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/heads/main') || startsWith(github.ref, 'refs/heads/master')
         with:
-          tag_name: v1.0.2
-          name: "ActivePause v1.0.2 (APK)"
+          tag_name: v1.0.3
+          name: "ActivePause v1.0.3 (APK)"
           body: |
             ## ActivePause Android APK
             Descarga e instala el archivo **ActivePause.apk** en tu teléfono Android.
