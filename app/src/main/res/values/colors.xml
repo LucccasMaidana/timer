@@ -1,0 +1,10 @@
+<resources>
+    <color name="primary_dark">#080E1E</color>
+    <color name="primary_surface">#0D162B</color>
+    <color name="primary_card">#162244</color>
+    <color name="accent_cyan">#00D2FF</color>
+    <color name="accent_blue">#0066FF</color>
+    <color name="accent_alarm">#FF3366</color>
+    <color name="text_white">#F0F5FF</color>
+    <color name="text_muted">#8E9CBF</color>
+</resources>

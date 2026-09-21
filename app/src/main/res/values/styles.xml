@@ -1,0 +1,18 @@
+<resources>
+    <style name="Theme.ActivePause" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/accent_cyan</item>
+        <item name="colorPrimaryVariant">@color/accent_blue</item>
+        <item name="colorOnPrimary">@color/primary_dark</item>
+        <item name="android:windowBackground">@color/primary_dark</item>
+        <item name="android:statusBarColor">@color/primary_dark</item>
+        <item name="android:navigationBarColor">@color/primary_dark</item>
+    </style>
+
+    <style name="Theme.ActivePause.Alarm" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/primary_dark</item>
+        <item name="android:statusBarColor">@color/primary_dark</item>
+        <item name="android:navigationBarColor">@color/primary_dark</item>
+        <item name="android:windowShowWhenLocked">true</item>
+        <item name="android:windowTurnScreenOn">true</item>
+    </style>
+</resources>

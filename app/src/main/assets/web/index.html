@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#080E1E" id="meta-theme-color">
+  <title>ActivePause • Pausas Activas y Estudio</title>
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300D2FF'><circle cx='12' cy='12' r='10'/></svg>">
+  
+  <!-- Tipografía moderna Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-dark">
+
+  <!-- Contenedor principal: estilo móvil centrado en PC y pantalla completa en celular -->
+  <div class="app-viewport">
+    
+    <!-- Barra superior -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="brand-title">ActivePause</h1>
+          <span class="brand-subtitle">Estudio & Movimiento</span>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <!-- Botón probar sonido -->
+        <button id="btn-test-sound" class="icon-btn" title="Probar sonido de alarma" aria-label="Probar sonido">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+          </svg>
+        </button>
+
+        <!-- Botón probar vibración -->
+        <button id="btn-test-vibrate" class="icon-btn" title="Probar vibración de alarma" aria-label="Probar vibración">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="6" y="2" width="12" height="20" rx="3" ry="3"></rect>
+            <line x1="12" y1="18" x2="12.01" y2="18" stroke-width="3"></line>
+            <path d="M2 8l2 4-2 4"></path>
+            <path d="M22 8l-2 4 2 4"></path>
+          </svg>
+        </button>
+
+        <!-- Botón de ajustes de bloques (abrir/cerrar configuración) -->
+        <button id="btn-settings-toggle" class="icon-btn" title="Configurar tiempos de bloques y descansos" aria-label="Configuración">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+        </button>
+
+        <!-- Selector Claro / Oscuro -->
+        <button id="btn-theme-toggle" class="icon-btn" title="Cambiar tema claro/oscuro" aria-label="Cambiar tema">
+          <!-- Icono Sol (modo claro) -->
+          <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <!-- Icono Luna (modo oscuro) -->
+          <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Notificación emergente / Toast para feedback háctico y avisos -->
+    <div id="toast-notification" class="toast-notification hidden"></div>
+
+    <!-- Indicador de estado y badges -->
+    <div class="status-bar">
+      <div id="status-badge" class="badge badge-idle">
+        <span class="badge-dot"></span>
+        <span id="status-text">Listo para iniciar</span>
+      </div>
+
+      <div class="session-counter">
+        <span class="session-label">Bloques hoy:</span>
+        <span id="blocks-count" class="session-number">0</span>
+      </div>
+    </div>
+
+    <!-- Sección Central: Círculo del Temporizador -->
+    <main class="timer-section">
+      <div class="timer-wrapper">
+        <!-- SVG Ring animado -->
+        <svg class="progress-ring" viewBox="0 0 280 280">
+          <circle class="ring-track" cx="140" cy="140" r="120" />
+          <circle id="ring-progress" class="ring-fill" cx="140" cy="140" r="120" />
+        </svg>
+
+        <!-- Contenido interior del reloj -->
+        <div class="timer-display">
+          <span id="timer-label" class="timer-sub">TIEMPO DE ESTUDIO</span>
+          <span id="timer-digits" class="timer-time">50:00</span>
+          
+          <!-- Indicador sutil de wake lock -->
+          <div id="wakelock-indicator" class="wakelock-tag" title="Pantalla activa en móvil">
+            <span class="wake-dot"></span> Pantalla activa
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta dinámica de ejercicio durante la pausa -->
+      <section id="exercise-card" class="exercise-card hidden">
+        <div class="exercise-header">
+          <span class="exercise-pill">🧘 Pausa Activa</span>
+          <button id="btn-next-exercise" class="btn-refresh" title="Cambiar sugerencia">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+            </svg>
+            Otro
+          </button>
+        </div>
+        <p id="exercise-text" class="exercise-instruction">
+          ¡Buen trabajo! Levántate, camina y estira la espalda.
+        </p>
+      </section>
+
+      <!-- Panel de configuración de bloques (personalizable en cualquier momento) -->
+      <div id="settings-panel" class="settings-container">
+        
+        <!-- Grupo 1: Tiempo de Estudio / Concentración -->
+        <div class="config-card">
+          <div class="config-header">
+            <span class="config-title">💻 Bloque de Estudio</span>
+            <span id="badge-work-time" class="config-badge">50 min</span>
+          </div>
+
+          <div class="preset-buttons" id="work-presets">
+            <button class="preset-btn" data-minutes="25">25m</button>
+            <button class="preset-btn" data-minutes="45">45m</button>
+            <button class="preset-btn active" data-minutes="50">50m</button>
+            <button class="preset-btn" data-minutes="60">60m</button>
+            <button class="preset-btn" data-minutes="90">90m</button>
+            <button class="preset-btn test-btn" data-seconds="10" title="Probar en 10s">⚡10s</button>
+          </div>
+
+          <div class="stepper-row">
+            <span class="stepper-lbl">Personalizado:</span>
+            <div class="stepper-box">
+              <button id="btn-work-minus" class="stepper-action" title="Restar 5 minutos">−</button>
+              <input type="number" id="input-work-min" class="stepper-num" value="50" min="1" max="300">
+              <span class="stepper-unit">min</span>
+              <button id="btn-work-plus" class="stepper-action" title="Sumar 5 minutos">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grupo 2: Tiempo de Pausa Activa / Descanso (De antemano) -->
+        <div class="config-card">
+          <div class="config-header">
+            <span class="config-title">🏃 Descanso / Ejercicio (De antemano)</span>
+            <span id="badge-break-time" class="config-badge">Libre ∞</span>
+          </div>
+
+          <div class="preset-buttons" id="break-presets">
+            <button class="preset-btn active" data-mode="free">Libre ∞</button>
+            <button class="preset-btn" data-minutes="5">5m</button>
+            <button class="preset-btn" data-minutes="10">10m</button>
+            <button class="preset-btn" data-minutes="15">15m</button>
+            <button class="preset-btn test-btn" data-seconds="5" title="Probar en 5s">⚡5s</button>
+          </div>
+
+          <div class="stepper-row" id="break-custom-row">
+            <span class="stepper-lbl">Personalizado:</span>
+            <div class="stepper-box">
+              <button id="btn-break-minus" class="stepper-action" title="Restar 1 minuto">−</button>
+              <input type="number" id="input-break-min" class="stepper-num" value="10" min="1" max="120">
+              <span class="stepper-unit">min</span>
+              <button id="btn-break-plus" class="stepper-action" title="Sumar 1 minuto">+</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Zona de Acciones Principales (1 solo botón primario) -->
+    <footer class="app-footer">
+      <!-- Botón de Acción Primario Contextual -->
+      <button id="btn-main-action" class="primary-action-btn action-start">
+        <span class="action-icon" id="action-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+        </span>
+        <span id="action-label" class="action-text">Iniciar Día</span>
+      </button>
+
+      <!-- Botón secundario para finalizar día -->
+      <button id="btn-end-day" class="secondary-btn hidden">
+        Finalizar jornada
+      </button>
+    </footer>
+
+  </div>
+
+  <!-- Modal de Resumen del Día -->
+  <div id="summary-modal" class="modal-backdrop hidden">
+    <div class="modal-card">
+      <div class="modal-icon-congrats">🎉</div>
+      <h2 class="modal-title">¡Jornada Completada!</h2>
+      <p class="modal-desc">Has cumplido tus bloques de estudio cuidando tu cuerpo.</p>
+      
+      <div class="stats-grid">
+        <div class="stat-box">
+          <span id="stat-blocks" class="stat-val">0</span>
+          <span class="stat-lbl">Bloques cumplidos</span>
+        </div>
+        <div class="stat-box">
+          <span id="stat-focus-time" class="stat-val">0m</span>
+          <span class="stat-lbl">Estudio total</span>
+        </div>
+        <div class="stat-box">
+          <span id="stat-break-time" class="stat-val">0m</span>
+          <span class="stat-lbl">Pausas activas</span>
+        </div>
+      </div>
+
+      <button id="btn-new-day" class="modal-btn-primary">Comenzar Nuevo Día</button>
+      <button id="btn-close-modal" class="modal-btn-text">Cerrar</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

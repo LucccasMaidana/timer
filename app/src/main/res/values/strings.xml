@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ActivePause</string>
+    <string name="channel_name">Temporizador de Estudio</string>
+    <string name="channel_desc">Muestra el tiempo restante mientras usas otras aplicaciones</string>
+    <string name="btn_take_break">Pausar e Iniciar Descanso</string>
+    <string name="btn_end_day">Finalizar Día</string>
+    <string name="alarm_title">¡TIEMPO DE ESTUDIO COMPLETADO!</string>
+    <string name="alarm_subtitle">Levántate de la silla y activa tu cuerpo</string>
+</resources>

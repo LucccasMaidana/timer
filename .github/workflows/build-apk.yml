@@ -1,0 +1,61 @@
+name: Compilar APK Android (ActivePause)
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Compilar APK Debug
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar Código
+        uses: actions/checkout@v4
+
+      - name: Configurar Java JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Configurar Gradle
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '8.7'
+
+      - name: Compilar APK con Gradle
+        run: gradle assembleDebug --stacktrace
+
+      - name: Renombrar APK
+        run: |
+          cp app/build/outputs/apk/debug/app-debug.apk ActivePause.apk
+
+      - name: Subir APK como Artefacto de GitHub
+        uses: actions/upload-artifact@v4
+        with:
+          name: ActivePause-APK
+          path: ActivePause.apk
+          if-no-files-found: error
+
+      - name: Publicar Release con APK descargable directo
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/heads/main') || startsWith(github.ref, 'refs/heads/master')
+        with:
+          tag_name: v1.0.0
+          name: "ActivePause v1.0.0 (APK)"
+          body: |
+            ## ActivePause Android APK
+            Descarga e instala el archivo **ActivePause.apk** en tu teléfono Android.
+            
+            ### Características nativas incluidas:
+            - 📳 **Vibración física por hardware** en la alarma.
+            - ⏱️ **Notificación continua del timer** mientras usas Instagram, WhatsApp o cualquier otra app.
+            - 🔔 **Pantalla de alarma sobre el bloqueo** (*Full-screen intent*) tipo reloj despertador de Android con sugerencias de ejercicios.
+          files: ActivePause.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

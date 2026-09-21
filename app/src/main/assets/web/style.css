@@ -1,0 +1,895 @@
+/* ==========================================================
+   ACTIVEPAUSE - SISTEMA DE DISEÑO AZULADO (DARK & LIGHT)
+   Mobile-first, Premium Glassmorphism & Micro-interacciones
+   ========================================================== */
+
+:root {
+  /* --- PALETA TEMA OSCURO (Por defecto) --- */
+  --bg-app: #080E1E;
+  --bg-viewport: #0D162B;
+  --bg-card: rgba(22, 34, 68, 0.7);
+  --bg-card-hover: rgba(30, 46, 92, 0.85);
+  
+  --text-main: #F0F5FF;
+  --text-muted: #8E9CBF;
+  --text-inverse: #080E1E;
+
+  --border-color: rgba(74, 144, 226, 0.18);
+  --border-active: rgba(0, 210, 255, 0.5);
+
+  --accent-cyan: #00D2FF;
+  --accent-blue: #2575FC;
+  --accent-glow: rgba(0, 210, 255, 0.35);
+
+  --btn-primary-bg: linear-gradient(135deg, #00D2FF 0%, #0066FF 100%);
+  --btn-primary-text: #FFFFFF;
+  --btn-primary-shadow: 0 8px 24px rgba(0, 210, 255, 0.35);
+
+  --ring-track: rgba(255, 255, 255, 0.08);
+  --ring-work: #00D2FF;
+  --ring-alarm: #FF3366;
+  --ring-break: #00F5D4;
+
+  --badge-idle-bg: rgba(0, 210, 255, 0.12);
+  --badge-idle-text: #00D2FF;
+
+  --shadow-phone: 0 25px 60px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+/* --- TEMA CLARO AZULADO --- */
+body.theme-light {
+  --bg-app: #EAF0F8;
+  --bg-viewport: #F5F9FD;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #F0F6FF;
+  
+  --text-main: #0B1E36;
+  --text-muted: #4A6382;
+  --text-inverse: #FFFFFF;
+
+  --border-color: rgba(0, 102, 255, 0.12);
+  --border-active: rgba(0, 102, 255, 0.4);
+
+  --accent-cyan: #0066FF;
+  --accent-blue: #00B4D8;
+  --accent-glow: rgba(0, 102, 255, 0.25);
+
+  --btn-primary-bg: linear-gradient(135deg, #0066FF 0%, #00B4D8 100%);
+  --btn-primary-text: #FFFFFF;
+  --btn-primary-shadow: 0 8px 24px rgba(0, 102, 255, 0.3);
+
+  --ring-track: rgba(0, 102, 255, 0.1);
+  --ring-work: #0066FF;
+  --ring-alarm: #E63946;
+  --ring-break: #06D6A0;
+
+  --badge-idle-bg: rgba(0, 102, 255, 0.1);
+  --badge-idle-text: #0066FF;
+
+  --shadow-phone: 0 20px 50px -10px rgba(11, 30, 54, 0.15), 0 0 0 1px rgba(0, 102, 255, 0.1);
+}
+
+/* ==========================================================
+   RESET & BASE
+   ========================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  user-select: none;
+}
+
+/* ==========================================================
+   VIEWPORT MÓVIL (Look de teléfono en PC, 100% en celular)
+   ========================================================== */
+.app-viewport {
+  width: 100%;
+  max-width: 420px;
+  height: 100vh;
+  height: 100dvh;
+  max-height: 870px;
+  background-color: var(--bg-viewport);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem 1.25rem 1.75rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-phone);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+@media (min-width: 481px) {
+  .app-viewport {
+    border-radius: 40px;
+    height: 92vh;
+    border: 1px solid var(--border-color);
+  }
+}
+
+/* ==========================================================
+   HEADER & ACTIONS
+   ========================================================== */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.75rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  background: var(--btn-primary-bg);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px var(--accent-glow);
+}
+
+.brand-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, var(--text-main) 60%, var(--accent-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.brand-subtitle {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.header-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  color: var(--text-main);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.icon-btn:hover {
+  background: var(--bg-card-hover);
+  transform: translateY(-2px);
+  border-color: var(--border-active);
+}
+
+.icon-btn:active {
+  transform: scale(0.95);
+}
+
+/* Alternancia Sol/Luna */
+body.theme-dark .sun-icon { display: block; }
+body.theme-dark .moon-icon { display: none; }
+body.theme-light .sun-icon { display: none; }
+body.theme-light .moon-icon { display: block; }
+
+/* ==========================================================
+   STATUS BAR & BADGES
+   ========================================================== */
+.status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+
+.badge-idle {
+  background-color: var(--badge-idle-bg);
+  color: var(--badge-idle-text);
+}
+
+.badge-work {
+  background-color: rgba(0, 210, 255, 0.15);
+  color: #00D2FF;
+  animation: pulse-badge 2s infinite ease-in-out;
+}
+body.theme-light .badge-work {
+  background-color: rgba(0, 102, 255, 0.12);
+  color: #0066FF;
+}
+
+.badge-alarm {
+  background-color: rgba(255, 51, 102, 0.2);
+  color: #FF3366;
+  animation: blink-badge 0.8s infinite;
+}
+
+.badge-break {
+  background-color: rgba(0, 245, 212, 0.15);
+  color: #00F5D4;
+}
+body.theme-light .badge-break {
+  background-color: rgba(6, 214, 160, 0.15);
+  color: #059669;
+}
+
+.session-counter {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.session-number {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  color: var(--text-main);
+  background: var(--bg-card);
+  padding: 0.2rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+/* ==========================================================
+   TIMER SECTION & CIRCLE
+   ========================================================== */
+.timer-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 1;
+  gap: 1rem;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 0.5rem;
+}
+
+.timer-section::-webkit-scrollbar {
+  display: none;
+}
+
+.timer-wrapper {
+  position: relative;
+  width: 230px;
+  height: 230px;
+  min-height: 230px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.25rem;
+}
+
+.progress-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.ring-track {
+  fill: none;
+  stroke: var(--ring-track);
+  stroke-width: 12;
+}
+
+.ring-fill {
+  fill: none;
+  stroke: var(--ring-work);
+  stroke-width: 12;
+  stroke-linecap: round;
+  stroke-dasharray: 753.98; /* 2 * PI * 120 */
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.5s linear, stroke 0.4s ease;
+  filter: drop-shadow(0 0 8px var(--accent-glow));
+}
+
+.timer-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  text-align: center;
+}
+
+.timer-sub {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.timer-time {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 3.6rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--text-main);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.wakelock-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  background: var(--bg-card);
+  padding: 0.25rem 0.6rem;
+  border-radius: 12px;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: all 0.3s ease;
+}
+
+.wakelock-tag.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.wake-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #00F5D4;
+}
+
+/* ==========================================================
+   EXERCISE CARD (DURANTE LA PAUSA)
+   ========================================================== */
+.exercise-card {
+  width: 100%;
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 1rem 1.15rem;
+  animation: slide-up 0.4s ease forwards;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
+}
+
+.exercise-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.exercise-pill {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #00F5D4;
+  letter-spacing: 0.05em;
+}
+body.theme-light .exercise-pill {
+  color: #059669;
+}
+
+.btn-refresh {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: inherit;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.btn-refresh:hover {
+  color: var(--text-main);
+}
+
+.exercise-instruction {
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--text-main);
+}
+
+/* ==========================================================
+   SETTINGS & CUSTOM BLOCKS CONTAINER
+   ========================================================== */
+.settings-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  transition: all 0.3s ease;
+  animation: slide-up 0.3s ease forwards;
+}
+
+.config-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+  padding: 0.75rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.config-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.config-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+}
+
+.config-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  background: rgba(0, 210, 255, 0.12);
+  padding: 0.15rem 0.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+body.theme-light .config-badge {
+  background: rgba(0, 102, 255, 0.08);
+  color: #0066FF;
+}
+
+.preset-buttons {
+  display: flex;
+  gap: 0.35rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.preset-btn {
+  flex: 1;
+  min-width: 44px;
+  padding: 0.45rem 0.2rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-viewport);
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.preset-btn:hover {
+  color: var(--text-main);
+  border-color: var(--border-active);
+}
+
+.preset-btn.active {
+  background: var(--btn-primary-bg);
+  color: #FFFFFF;
+  border-color: transparent;
+  box-shadow: 0 4px 12px var(--accent-glow);
+}
+
+.preset-btn.test-btn {
+  background: rgba(255, 180, 0, 0.1);
+  color: #FFAA00;
+  border-color: rgba(255, 180, 0, 0.3);
+}
+.preset-btn.test-btn.active {
+  background: #FFAA00;
+  color: #080E1E;
+}
+
+/* Stepper para minutos personalizados */
+.stepper-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.25rem;
+  border-top: 1px dashed var(--border-color);
+}
+
+.stepper-lbl {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.stepper-box {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.stepper-action {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-viewport);
+  color: var(--text-main);
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.stepper-action:hover {
+  background: var(--btn-primary-bg);
+  color: #FFFFFF;
+  border-color: transparent;
+}
+
+.stepper-action:active {
+  transform: scale(0.92);
+}
+
+.stepper-num {
+  width: 48px;
+  height: 28px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-viewport);
+  color: var(--text-main);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-align: center;
+  outline: none;
+  -moz-appearance: textfield;
+}
+
+.stepper-num::-webkit-outer-spin-button,
+.stepper-num::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.stepper-num:focus {
+  border-color: var(--accent-cyan);
+}
+
+.stepper-unit {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* ==========================================================
+   FOOTER ACTIONS (EL BOTÓN PRINCIPAL DE 1 SOLO TOQUE)
+   ========================================================== */
+.app-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-top: 0.5rem;
+}
+
+.primary-action-btn {
+  width: 100%;
+  height: 64px;
+  border-radius: 20px;
+  border: none;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.primary-action-btn:active {
+  transform: scale(0.97);
+}
+
+/* Estado: Iniciar Día */
+.primary-action-btn.action-start {
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  box-shadow: var(--btn-primary-shadow);
+}
+
+/* Estado: Alarma Sonando (Pausar e iniciar descanso) */
+.primary-action-btn.action-alarm {
+  background: linear-gradient(135deg, #FF3366 0%, #FF6B6B 100%);
+  color: #FFFFFF;
+  box-shadow: 0 10px 30px rgba(255, 51, 102, 0.45);
+  animation: pulse-alarm 1s infinite alternate;
+}
+
+/* Estado: Durante Descanso (Volver a estudiar) */
+.primary-action-btn.action-break {
+  background: linear-gradient(135deg, #00F5D4 0%, #00B4D8 100%);
+  color: #080E1E;
+  box-shadow: 0 8px 24px rgba(0, 245, 212, 0.35);
+}
+body.theme-light .primary-action-btn.action-break {
+  color: #FFFFFF;
+  background: linear-gradient(135deg, #059669 0%, #00B4D8 100%);
+}
+
+/* Estado: Durante Trabajo (Pausar o adelantar) */
+.primary-action-btn.action-working {
+  background: var(--bg-card);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+}
+.primary-action-btn.action-working:hover {
+  border-color: var(--border-active);
+}
+
+.secondary-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: color 0.2s ease;
+  text-align: center;
+}
+
+.secondary-btn:hover {
+  color: #FF4D6D;
+}
+
+/* ==========================================================
+   MODAL DE RESUMEN
+   ========================================================== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 8, 18, 0.75);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  z-index: 100;
+  animation: fade-in 0.2s ease;
+}
+
+.modal-card {
+  width: 100%;
+  max-width: 360px;
+  background: var(--bg-viewport);
+  border: 1px solid var(--border-color);
+  border-radius: 28px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  animation: scale-up 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-icon-congrats {
+  font-size: 3rem;
+  margin-bottom: 0.75rem;
+}
+
+.modal-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: 0.35rem;
+}
+
+.modal-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.stat-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 0.75rem 0.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.stat-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+}
+
+.stat-lbl {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.modal-btn-primary {
+  width: 100%;
+  height: 52px;
+  border-radius: 16px;
+  border: none;
+  background: var(--btn-primary-bg);
+  color: #FFFFFF;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--btn-primary-shadow);
+  margin-bottom: 0.5rem;
+  transition: transform 0.2s ease;
+}
+
+.modal-btn-primary:active {
+  transform: scale(0.97);
+}
+
+.modal-btn-text {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+/* ==========================================================
+   UTILIDADES & ANIMACIONES
+   ========================================================== */
+.hidden {
+  display: none !important;
+}
+
+@keyframes pulse-alarm {
+  0% { transform: scale(1); box-shadow: 0 10px 25px rgba(255, 51, 102, 0.4); }
+  100% { transform: scale(1.03); box-shadow: 0 15px 35px rgba(255, 51, 102, 0.7); }
+}
+
+@keyframes pulse-badge {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes blink-badge {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scale-up {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Efecto visual de vibración física */
+@keyframes shake-device {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  15% { transform: translate(-5px, 3px) rotate(-1deg); }
+  30% { transform: translate(5px, -3px) rotate(1deg); }
+  45% { transform: translate(-4px, 4px) rotate(-0.5deg); }
+  60% { transform: translate(4px, -2px) rotate(0.5deg); }
+  75% { transform: translate(-2px, 2px) rotate(-0.2deg); }
+  90% { transform: translate(2px, -1px) rotate(0.2deg); }
+}
+
+.shake-screen {
+  animation: shake-device 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+/* Notificación Toast */
+.toast-notification {
+  position: absolute;
+  top: 4.8rem;
+  left: 1.25rem;
+  right: 1.25rem;
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-active);
+  color: var(--text-main);
+  padding: 0.75rem 1rem;
+  border-radius: 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  z-index: 50;
+  animation: slide-up 0.25s ease;
+  transition: opacity 0.3s ease;
+}
+
+.toast-notification.success {
+  border-color: #00F5D4;
+}
+
+.toast-notification.info {
+  border-color: var(--accent-cyan);
+}
+
