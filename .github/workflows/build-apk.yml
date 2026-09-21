@@ -59,10 +59,14 @@ jobs:
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/heads/main') || startsWith(github.ref, 'refs/heads/master')
         with:
-          tag_name: v1.0.3
-          name: "ActivePause v1.0.3 (APK)"
+          tag_name: v1.0.4
+          name: "ActivePause v1.0.4 (APK con Ícono Oficial)"
           body: |
-            ## ActivePause Android APK
+            ## ActivePause Android APK (v1.0.4)
+            - 🎨 **Nuevo ícono oficial de la app** instalado en el launcher de Android (cronómetro con pausa activa en tonos azulados).
+            - 📳 **Vibración física por hardware** en la alarma.
+            - ⏱️ **Notificación continua del timer** mientras usas Instagram o cualquier otra app.
+            - 🔔 **Pantalla de alarma sobre el bloqueo** (*Full-screen intent*) tipo reloj despertador de Android con sugerencias de ejercicios.
             Descarga e instala el archivo **ActivePause.apk** en tu teléfono Android.
             
             ### Características nativas incluidas:

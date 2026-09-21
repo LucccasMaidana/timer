@@ -3,7 +3,37 @@
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
+    
+    <!-- Botón superior del cronómetro -->
     <path
         android:fillColor="#00D2FF"
-        android:pathData="M54,20A34,34 0 1,0 88,54A34,34 0 0,0 54,20ZM54,80A26,26 0 1,1 80,54A26,26 0 0,1 54,80ZM57,36H51V57L69,67.8L72,63L57,54Z"/>
+        android:pathData="M50,22 h8 a2,2 0 0,1 2,2 v3 a0,0 0 0,1 0,0 h-12 a0,0 0 0,1 0,0 v-3 a2,2 0 0,1 2,-2 z"/>
+    <path
+        android:fillColor="#00D2FF"
+        android:pathData="M52,27 h4 v4 h-4 z"/>
+
+    <!-- Anillo circular del temporizador (Progreso activo) -->
+    <path
+        android:strokeColor="#00D2FF"
+        android:strokeWidth="5"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000"
+        android:pathData="M54,34 A24,24 0 1,1 32,45"/>
+
+    <!-- Destello de flecha en el progreso -->
+    <path
+        android:fillColor="#00F5D4"
+        android:pathData="M30,42 l5,5 l-6,2 z"/>
+
+    <!-- Barras de pausa (Active Pause) centradas y redondeadas -->
+    <!-- Barra izquierda (Blanco puro) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M46,47 h4 a2,2 0 0,1 2,2 v18 a2,2 0 0,1 -2,2 h-4 a2,2 0 0,1 -2,-2 v-18 a2,2 0 0,1 2,-2 z"/>
+
+    <!-- Barra derecha (Azul celeste brillante) -->
+    <path
+        android:fillColor="#00D2FF"
+        android:pathData="M58,47 h4 a2,2 0 0,1 2,2 v18 a2,2 0 0,1 -2,2 h-4 a2,2 0 0,1 -2,-2 v-18 a2,2 0 0,1 2,-2 z"/>
+
 </vector>
